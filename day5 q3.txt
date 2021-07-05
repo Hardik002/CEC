@@ -1,0 +1,20 @@
+class NumArray {
+    vector<int>v;
+    public:
+    NumArray(vector<int>& nums) {
+        int i;
+        int sum=0;
+        for(i=0;i<nums.size();i++)
+        {
+            sum=sum+nums[i];
+            v.push_back(sum);
+        }
+    }
+    
+    int sumRange(int left, int right) {
+        if(left==0)
+            return v[right];
+        else
+            return (v[right]-v[left-1]);
+    }
+};
