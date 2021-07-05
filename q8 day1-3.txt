@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int binary(vector<int> v,int n, int key ){
+        for(int i = 0 ; i < n; i++)
+            if(v[i]==key)
+                return i;
+        return -1;
+    }
+    vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
+        vector<int> v(nums);
+        vector<int> res;
+        sort(v.begin(),v.end());
+        for(int x :nums){
+            res.push_back(binary(v, v.size(), x));            
+        }
+        return res;
+        
+    }
+};

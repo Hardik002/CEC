@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int solution(vector<int> &nums, int curr,int total)
+    {
+        if(curr==nums.size())
+            return total;
+        return solution(nums , curr+1 , total^nums[curr]) + solution(nums, curr+1, total) ;
+    }
+    int subsetXORSum(vector<int>& nums) {
+        return solution (nums, 0 , 0);
+    }
+};

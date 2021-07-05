@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int ncr(int n){
+        return n*(n-1)/2;
+    }
+    int numIdenticalPairs(vector<int>& nums) {
+        map<int , int> m;
+        for(int x : nums){
+            if(m.find(x)!=m.end())
+                m[x] +=1;
+            else{
+                m[x] = 1;
+            }
+        }
+        int sum = 0;
+        for(auto x : m){
+            if(x.second>1)
+                sum+=ncr(x.second);
+        }
+        return sum;
+        
+    }
+};

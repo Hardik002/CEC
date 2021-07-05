@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int maximumWealth(vector<vector<int>>& accounts) {
+        int m = 0, sum;
+        for(auto x :accounts){
+            sum = 0;
+            for(auto j : x)
+                sum +=j;
+            m = max(sum,m);
+        }
+        return m;
+    }
+};
