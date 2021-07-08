@@ -1,0 +1,61 @@
+class Solution {
+public:
+    int numRookCaptures(vector<vector<char>>& board) {
+        bool flag = false;
+        int x , y ;
+        for(int i = 0 ;i < 8 ; i++){
+            for(int j = 0 ; j < 8;j++){
+                if(board[i][j] == 'R'){
+                    flag = true;
+                    x = i;
+                    y = j;
+                    break;
+                }
+                if (flag)  break;  
+            }
+        }
+        bool left, right, up, down;
+        left = right = up = down = true;
+        int attack = 0;
+        for(int i = 1; i < 8; i++){
+            //bishop
+            if(y-i > -1  && board[x][y-i]!='.' && left && board[x][y-i] == 'B')
+                left = false;
+            //right
+            if(y+i < 8  && board[x][y+i]!= '.' && right && board[x][y+i] == 'B')
+                right = false;
+            //up
+            if(x-i > -1  && board[x-i][y]!= '.' && up && board[x-i][y] == 'B')
+                up = false;
+            //down
+            if(x+1 < 8  && board[x+i][y]!= '.' && down && board[x+i][y] == 'B')
+                down = false;
+            
+            //pawn
+            //left
+            if(y-i > -1  && board[x][y-i]!= '.' && left && board[x][y-i] == 'p'){
+                attack++;
+                left = false;
+            }
+            //right
+            if(y+i < 8  && board[x][y+i]!= '.' && right && board[x][y+i] == 'p'){
+                attack++;
+                right = false;
+            }
+            //up
+            if(x-i > -1  && board[x-i][y]!= '.' && up && board[x-i][y] == 'p'){
+                attack++;
+                up = false;
+            }
+            //down
+            if(x+i <8  && board[x+i][y]!='.' && down && board[x+i][y] == 'p'){
+                attack++;
+                down = false;
+            }
+                
+            if(!left && !right && !up && !down)
+                break;
+        }
+        return attack;
+    }
+};

@@ -1,0 +1,58 @@
+class Solution {
+public:
+    int numRookCaptures(vector<vector<char>>& board) {
+        bool flag = false;
+        int x , y , i , j;
+        vector<vector<int>> bishop;
+        vector<vector<int>> pawn;
+        for(i = 0 ;i < 8 ; i++){
+            for(j = 0 ; j < 8;j++){
+                if(board[i][j] == 'R'){
+                    x = i;
+                    y = j;
+                    goto find;
+                }  
+            }
+        }
+        
+        find:
+        int attack = 0;
+        // Left
+        for(j = y; j >= 0; j --){
+            if(board[x][j] == 'p'){
+                attack++;
+                break;
+            }
+            else if(board[x][j] == 'B')
+                break;
+        }
+        // Right
+        for(j = y; j < 8; j ++){
+            if(board[x][j] == 'p'){
+                attack++;
+                break;
+            }
+            else if(board[x][j] == 'B')
+                break;
+        }
+        // Up
+        for(i = x; i >=0; i --){
+            if(board[i][y] == 'p'){
+                attack++;
+                break;
+            }
+            else if(board[i][y] == 'B')
+                break;
+        }
+        // Down
+        for(i = x; i < 8; i ++){
+            if(board[i][y] == 'p'){
+                attack++;
+                break;
+            }
+            else if(board[i][y] == 'B')
+                break; 
+        }
+        return attack;
+    }
+};
